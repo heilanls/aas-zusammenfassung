@@ -4,6 +4,8 @@
 \input{../../../latex/commands.tex}
 
 \begin{document}
+	\pagenumbering{gobble} % removes numbering and resets counter to 1
+	
 	\title{Architektur von Anwendungssystemen -- Zusammenfassung}
 	\subtitle{Sommersemester 2019}
 	\author{Lukas Heiland -- last updated:}
@@ -12,9 +14,17 @@
 	
 	\pagebreak
 	
+	\setcounter{tocdepth}{1}
 	\tableofcontents
 	
 	\pagebreak
 	
+	
+	\pagenumbering{arabic} % start page numbering after TOC 
+	
 	\input{definitions-notions.tex}
+		
+		\pagebreak
+		
+	\input{diagrams-and-styles.tex}
 \end{document}
