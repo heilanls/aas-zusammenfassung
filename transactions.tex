@@ -77,12 +77,22 @@
 		\subsection{BOT = Begin of Transaction}
 		
 			\subsubsection{Implicit BOT}
+			
+				 Automatically issued on behalf of transaction of first resource manager request (after former EOT) 
 				
 			\subsubsection{Explicit BOT}
+			
+				Issuing a BEGIN operation
 		
 		\subsection{EOT = End of Transaction}
 		
 			\subsubsection{Implicit EOT}
+			
+				Resource manager decision based on transaction’s state
+				
+				\begin{itemize}
+					\item May be COMMIT or ABORT
+				\end{itemize}
 		
 			\subsubsection{Explicit EOT}
 		
@@ -119,6 +129,70 @@
 		\end{figure}
 	
 	\section{Serializability}
+		
+		\subsection{Schedule}
+		
+			Order sequence in which concurrent transactions are executed
+		
+		\subsection{Conflicts}
+		
+			A conflict occures if and only if two instructions both acces the same data at the same time and at least one of them is a write.\\
+			Intuitively, a conflict between i$ _k $ and i$ _j $ forces a (logical) temporal order between them. 
+		
+		\subsection{Swaps}
+		
+			If two transactions operate on different data, or don't interfere in general, they can be swaped $ ( $change their order$ ) $ without changing the result.
+		
+		\subsection{Conflict Serializability}
+			
+			If a schedule S can be transformed into a schedule S’ by a series of swaps of non-conflicting instructions, we say that S and S’ are \textbf{conflict equivalent} :S $ \equiv $ S’ 
+			\begin{figure}[h!]
+				\includegraphics[scale=0.5]{res/conflict_serializable.jpg}
+				\caption{Conflict Serializability Example}
+			\end{figure}
+			
+		\subsection{Recoverability}
+		
+		\subsection{ACA Schedules}
+		
+		\subsection{Testing for Serializability -- Precedence graph}
+		
+		\section{Distributed Transactions}
+		
+		
+	\section{Distributed Transactions}
+	
+		\subsection{Atomicity in distributed transactions}
+		
+		\subsection{Transaction models}
+			\subsubsection{X/Open Model}
+			
+			\subsubsection{Two-phase commit protocol (2PC)}
+			
+			\subsubsection{Atomic Commitment Protocol (ACP)}
+			
+			
+		\subsection{Recovery}
+			\subsubsection{Coordinator Recovery}
+			
+			\subsubsection{Participant Recovery}
+			
+			
+			
+		\subsection{Blocking Participants}
+		
+		\subsection{Cooperative Termination Protocol}
+		
+		\subsection{Transaction branches}
+		
+		
+					
+			
+		
+		
+		
+		
+		
 		
 		
 		
