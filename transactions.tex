@@ -152,9 +152,13 @@
 			\end{figure}
 			
 		\subsection{Recoverability}
-		
+			Writer must commit before reader, so if the writer aborts, the transaction that read the uncommited changes can and must abort too.\\
+			Can lead to cascading aborts what leads to reverting a significant amount of changes
 		\subsection{ACA Schedules}
-		
+			\begin{itemize}
+				\item prevents cascading aborts
+				\item For each pair of transactions $ T_{writer} $ and $ T_{reader} $ such that $ T_{reader} $ reads a data item previously written by $ T_{writer} $, the commit operation of the writing  transaction $ T_{writer} $ appears before the readoperation of $ T_{reader} $ 
+			\end{itemize}
 		\subsection{Testing for Serializability -- Precedence graph}
 		
 		\section{Distributed Transactions}
