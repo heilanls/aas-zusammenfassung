@@ -160,34 +160,102 @@
 				\item For each pair of transactions $ T_{writer} $ and $ T_{reader} $ such that $ T_{reader} $ reads a data item previously written by $ T_{writer} $, the commit operation of the writing  transaction $ T_{writer} $ appears before the readoperation of $ T_{reader} $ 
 			\end{itemize}
 		\subsection{Testing for Serializability -- Precedence graph}
+			transactions = nodes \\
+			conflicts = arcs between nodes\\
+			accessed item $ ( $that is causing conflict$) $ = label of arc\\
+			
+			\begin{figure}[h!]
+				\includegraphics[scale=0.5]{res/precedence_graph_serializable.jpg}
+				\caption{Precedence Graph}
+			\end{figure}
+
+		Theorem: A schedule is conflict serializable if and only if its precedence graph is acyclic\\
+		\\
+		Theorem: If precedence graph is acyclic, a serializability order can be obtained by a topological sorting of the graph
 		
-		\section{Distributed Transactions}
 		
-		
+	\newpage	
 	\section{Distributed Transactions}
 	
 		\subsection{Atomicity in distributed transactions}
-		
+			If one System loses update, so it cannot commit the transaction when it recovers $ \Rightarrow $ Whole transaction must fail!
 		\subsection{Transaction models}
 			\subsubsection{X/Open Model}
 			
 			\subsubsection{Two-phase commit protocol (2PC)}
+				\begin{figure}[h!]
+					\includegraphics[scale=0.3]{res/two_phase_commit_protocol.jpg}
+					\caption{Two Phase Commit Protocol}
+				\end{figure}
 			
 			\subsubsection{Atomic Commitment Protocol (ACP)}
+				\begin{itemize}
+				 \item All participants that reach a decision reach the same one
+				 \item A participant cannot reverse its decision after it has reached one 
+				 \item The COMMIT decision can only be reached if all participants voted YES 
+				 \item  If all participants voted YES and no failure occurred the decision will finally be COMMIT 
+				 \item If all existing failures are repaired and no new failures occurred for sufficiently long, then all participants eventually reach a decision 
+			\end{itemize}
 			
-			
+		\newpage	
 		\subsection{Recovery}
+			\subsection{2PC Message Flow and Logging}
+				\begin{figure}[h!]
+					\includegraphics[scale=0.25]{res/message-flow_logging.jpg}
+					\caption{Message Flow and Logging}
+				\end{figure}
 			\subsubsection{Coordinator Recovery}
-			
+				\begin{figure}[h!]
+					\includegraphics[scale=0.25]{res/coordinator_recovery.jpg}
+					\caption{Coordinator Recovery}
+				\end{figure}
 			\subsubsection{Participant Recovery}
+				\begin{figure}[h!]
+					\includegraphics[scale=0.25]{res/participant_recovery.jpg}
+					\caption{Participant Recovery}
+				\end{figure}
 			
-			
-			
+		\clearpage	
 		\subsection{Blocking Participants}
+			\begin{itemize}
+				\item During the time interval from having prepared until reception of the TM's decision a participant is blocked ("in-doubt") 
+					\subitem \blue{Blocking}:= RM waits for decision message of TM 
+					\subitem If TM fails during this period RMs have to wait until TM recovers 
+					\subitem If RM fails during this period it must establish connection to TM to recover any in-doubt transaction 
+					\subitem Network fragmentation may separate TM from some RMs causing blocking
+				\item \blue{Cooperative Termination Protocols}: allow in certain situations to end a transaction without a connection to TM 
+				\item  \blue{Heuristic termination}: often used in practice 
+					\subitem Blocked RM assumes that its decision is the one of TM too
+					
+		\end{itemize}
 		
 		\subsection{Cooperative Termination Protocol}
 		
+			\begin{itemize}
+				\item Together with PREPARE request TM sends list of all participants 
+				\item Participants log this list together with VOTE record
+				\item  When in-doubt participant ("initiator") cannot connect to TM it contacts reachable participants ("responder") from this list 
+					\subitem If all responders are in doubt initiator remains in-doubt too 
+					\subitem If at least one responder knows TM's decision (commit or abort) initiator decides accordingly 
+					\subitem If at least one responder has not voted yet responder unilaterally decides ABORT and initiator decides accordingly
+					
+			\end{itemize}
+		
 		\subsection{Transaction branches}
+		
+			\begin{itemize}
+				\item When an application communicates with another application associated with another transaction manager, a new branchof the same global transaction is created 
+					\subitem A.k.a. “transaction infection”
+					\subitem This happens based on receiving a transaction context
+				\item A resource manager may have more than one active branch for the same global transaction
+				\item All branches belong to the same global transaction, i.e. all branches either commit or abort
+				
+			\end{itemize}
+		
+			\begin{figure}[h!]
+				\includegraphics[scale=0.4]{res/transaction_branches.jpg}
+				\caption{Transaction Branches}
+			\end{figure}
 		
 		
 					
