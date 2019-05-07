@@ -49,11 +49,14 @@
 			\begin{figure}[h!]
 				\includegraphics[scale=0.7]{res/orb.jpg}
 			\end{figure}
-			\pagebreak
+		
+		
 			\subsubsection{CORBA Architecture}.
 				\begin{figure}[h!]
 					\includegraphics[scale=0.6]{res/corba-arch.jpg}
 				\end{figure}
+			
+			\pagebreak % for layout reasons
 			
 			\subsubsection{ORB interoperability}
 			CORBA ORBs of different vendors have to interoperate $ \Rightarrow $ GIOP (General Inter-ORB Protocol)\\
@@ -76,7 +79,7 @@
 			applications, allow them to communicate through a common messaging paradigm.\\
 			\textbf{This is called a message bus or MOM}
 			
-			\pagebreak % Aus Layoutgründen
+			
 			
 		\subsection{Advantages}
 			\subsubsection{Asynchronous Communication}
@@ -123,19 +126,21 @@
 			 	\item  Failures are tolerated: The only effect of a channel failure is a delay of the message transmission until channel becomes available again ($ \approx $ 2PC protocol)
 			 \end{itemize}
 		 
- 		\pagebreak % Aus Layout-Gründen
 		 
 		\subsection{Message Queuing -- MQI (Message Queuing Interface)}
 			Target of communication is queue, not program.\\
 			Two important concepts:
 			\begin{enumerate}
 				\item \textbf{send-and-forget}: Program simply puts message to queue and continues processing
-				\item \textbf{store-and-forward} (if queue is remote): local MQM ensures delivery to remote queue
+				\item \textbf{store-and-forward} (if queue is remote): local MQM ensures delivery to remote queue
+
 			\end{enumerate}
 			\begin{figure}[h!]
 				\includegraphics[scale=0.5]{res/mqi.jpg}
 				\caption{The MQI}
 			\end{figure}
+		
+		\pagebreak % for layout reasons
 		
 			\subsubsection{MQI vocabulary}
 				\begin{itemize}

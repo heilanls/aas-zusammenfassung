@@ -21,7 +21,6 @@
 			\subitem Concurrency Control $($ keeping the data consistent while multiple transactions are executed $)$
 		\end{itemize}
 	
-	\newpage
 	\section{Concurrent Executions}
 		\begin{figure}[h!]
 			\includegraphics[scale=0.5]{res/Concurrent-Transactions.jpg}
@@ -150,6 +149,8 @@
 				\includegraphics[scale=0.5]{res/conflict_serializable.jpg}
 				\caption{Conflict Serializability Example}
 			\end{figure}
+		
+			\pagebreak
 			
 		\subsection{Recoverability}
 			Writer must commit before reader, so if the writer aborts, the transaction that read the uncommited changes can and must abort too.\\
@@ -173,8 +174,7 @@
 		\\
 		Theorem: If precedence graph is acyclic, a serializability order can be obtained by a topological sorting of the graph
 		
-		
-	\newpage	
+			
 	\section{Distributed Transactions}
 	
 		\subsection{Atomicity in distributed transactions}
@@ -197,7 +197,7 @@
 				 \item If all existing failures are repaired and no new failures occurred for sufficiently long, then all participants eventually reach a decision 
 			\end{itemize}
 			
-		\newpage	
+			
 		\subsection{Recovery}
 			\subsection{2PC Message Flow and Logging}
 				\begin{figure}[h!]
@@ -209,13 +209,15 @@
 					\includegraphics[scale=0.25]{res/coordinator_recovery.jpg}
 					\caption{Coordinator Recovery}
 				\end{figure}
+			
+			\pagebreak
 			\subsubsection{Participant Recovery}
 				\begin{figure}[h!]
 					\includegraphics[scale=0.25]{res/participant_recovery.jpg}
 					\caption{Participant Recovery}
 				\end{figure}
 			
-		\clearpage	
+			
 		\subsection{Blocking Participants}
 			\begin{itemize}
 				\item During the time interval from having prepared until reception of the TM's decision a participant is blocked ("in-doubt") 
@@ -241,6 +243,8 @@
 					
 			\end{itemize}
 		
+		\pagebreak
+		
 		\subsection{Transaction branches}
 		
 			\begin{itemize}
@@ -256,8 +260,6 @@
 				\includegraphics[scale=0.4]{res/transaction_branches.jpg}
 				\caption{Transaction Branches}
 			\end{figure}
-		\pagebreak
-		
 		
 					
 			
