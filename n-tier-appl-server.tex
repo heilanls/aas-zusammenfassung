@@ -13,10 +13,131 @@
 			Here resides the proper logic performed by the application. The functions offered via the presentation layer are here.
 			
 		\subsection{Resource Layer}
-			The logic to access the data needed by the application logic is in this layer as well as all DBs, files, queues, \ldots
+			The logic to access the data needed by the application logic is in this layer as well as all DBs, files, queues, \ldots \\
 		
 		
 		
 	\section{One Tier -- Monoliths (or Mainframes)}
+		Client and presentation layer are not the same!!! 'Application' can also be called 'host' or 'server'.
+		\fig{0.4}{res/monolith.jpg}
+		\paragraph{Advantages}
+			\begin{itemize}
+				\item Everything is centralized, managing and controlling resources is 'easy'
+				\item Design can be highly optimized by	\textit{blurring the layers}
+			\end{itemize}
+		\paragraph{Disadvantages}
+			\begin{itemize}
+				\item Ignores computing power available on clients
+				\item Code is hard to maintain
+				\item Reuse of functions very difficult
+			\end{itemize}
+		
+		
+	\section{Two tiers -- Client-Server}
+		\subsection{Client/Server cuts}
+			A client-server system is a consequence of cutting an application horizontally into two parts. The upper part is the \textit{cliet}, the lower part becomes the \textit{server}.
+			Depending on the location of the cut, different topologies (with pros and cons) result.\\
+			The problem is always \textbf{where to put	which functionality} based on nonfunctional goals(Performance, resuability,\ldots)
+			\figwithcap{0.3}{res/client-server-cuts.jpg}{Different topologies result when cutting at different positions}
+			
+		\subsection{The different topologies}
+			Number in the list represents the corresponding cut from the figure above
+			\begin{enumerate}
+				\item Distributed presentation
+				\item Remote Presentation
+				\item Distributed Application
+				\item Remote Data
+				\item Distributed Data
+			\end{enumerate}
+		
+		\subsection{Limitations}
+			Often, a client needs to access many servers on many different machines ('islands of information')\\
+			$ \Rightarrow $ Client must integrate different functions, e.g. Transforming data, Transactions across applications, \ldots\\
+			$ \Rightarrow $ Client must deal with heterogeneity: (a-)synchronous APIs, different PLs (Java C $ \sharp $ \ldots API, \ldots) and auth. mechanisms\\
+			Resulting problems include:
+			\begin{itemize}
+				\item Complexity: client design becomes increasingly difficult
+				\item Fragility: if one API changes, client has to be changed too
+				\item Performance issues: client machine has limited capabilities
+			\end{itemize}
+		
+			\figwithcap{0.25}{res/two-tier-bad.jpg}{client as integration point -- a bad idea and a limitation of two-tier systems}
+			
+			\pagebreak % for layout reasons
+		
+	\section{Three tiers -- Middleware}
+		\subsection{What is Middleware?}
+			\begin{itemize}
+				\item Middleware runs the integration logic
+				\item Client (presentation logic) simply invokes integration logic to access functionality\\
+					$ \Rightarrow $ from the client's perspective, the middleware \textbf{is} the appl. logic
+				\item Typically, the layers are distributed across different machines taking advantage of the complete modularity of the design; The middleware runs on the middle-tier
+			\end{itemize}
+			\figwithcap{0.3}{res/middleware.jpg}{Middleware: Pushing out Integration Logic}
+			
+		\subsection{Application server}
+			From a client perspective, there is no real difference between integration logic and appl. logic, so it makes sense to consolidate these two, using middleware to iplement the entire application logic, not only that which deals with integration $\Rightarrow $ \textbf{\red{Application server}}
+			\fig{0.35}{res/appl-server.jpg}
+		
+	\pagebreak % for layout reasons	
+		
+	\section{N-tier structure}
+		In the real world,  clients need integrated access to all kind of applications which
+		\begin{itemize}
+			\item may not have an application server with integration logic $ \Rightarrow $ we need an integration layer again, this time to manage connecting to all these different applications $ \Rightarrow $ fourth tier
+			\item could in turn use other applications and so on $ \Rightarrow $ lots of tiers
+		\end{itemize}
+		\fig{0.4}{res/n-tier-sample.jpg}
+		
+		
+		
+		
+		
+	\section{Role of the application server}
+		
+		
+	\section{What is a component?}
+		\subsection{Reusability}
+		
+		\subsection{Technical properties}
+			
+		\subsection{Component model}
+			\ldots\\\\
+	
+	\section{JEE fundamentals}
+		\subsection{Enterprise Java Beans (EJBs)}
+		EJBs $ = $ POJOs implementing POJIs\\
+		There are three different types of EJBs:
+		\begin{itemize}
+			\item Session Beans: Reflect transaction programs in a TP Monitor; two variants exist:
+				\subitem stateless (SLSBs): 'one time shot' interaction only
+				\subitem stateful (SFSBs): 'conversational' interaction
+			\item Message Beans: Reflect a message-based application that communicates via queues or 	publish/subscribe with its clients
+			\item Entity Beans: Reflects a persistent entity; optional to support
+		\end{itemize}
+	
+		\subsection{JEE Examples}
+			\textit{Note:} in the lecture, there have been many images from Oracle's JEE 7 tutorial. These will not be shown here, but are available at:  \url{https://docs.oracle.com/javaee/7/JEETT.pdf}
+		
+		\subsection{Implications of reusability requirement}
+		
+		\subsection{Annotations}
+		
+		\subsection{Deployment descriptors vs. annotations}
+		
+		\subsection{Notion of a container}
+		
+		\pagebreak % for layout reasons
+		
+	\section{JEE packaging and deployment}
+		
+		
+		
+	
+		
+		
+		
+		
+		
 		
 		
