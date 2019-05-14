@@ -37,7 +37,8 @@
 		\subsection{Client/Server cuts}
 			A client-server system is a consequence of cutting an application horizontally into two parts. The upper part is the \textit{cliet}, the lower part becomes the \textit{server}.
 			Depending on the location of the cut, different topologies (with pros and cons) result.\\
-			The problem is always \textbf{where to put	which functionality} based on nonfunctional goals(Performance, resuability,\ldots)
+			The problem is always \textbf{where to put	which functionality} based on nonfunctional goals
+(Performance, resuability,\ldots)
 			\figwithcap{0.3}{res/client-server-cuts.jpg}{Different topologies result when cutting at different positions}
 			
 		\subsection{The different topologies}
@@ -76,8 +77,7 @@
 			\figwithcap{0.3}{res/middleware.jpg}{Middleware: Pushing out Integration Logic}
 			
 		\subsection{Application server}
-			From a client perspective, there is no real difference between integration logic and appl. logic, so it makes sense to consolidate these two, using middleware to iplement the entire application logic, not only that which deals with integration $\Rightarrow $ \textbf{\red{Application server}}
-			\fig{0.35}{res/appl-server.jpg}
+			From a client perspective, there is no real difference between integration logic and appl. logic, so it makes sense to consolidate these two, using middleware to iplement the entire application logic, not only that which deals with integration $\Rightarrow $ \textbf{\red{Application server}}			\fig{0.35}{res/appl-server.jpg}
 		
 	\pagebreak % for layout reasons	
 		
